@@ -1,32 +1,13 @@
-dist: trusty
-sudo: false
-
 language: node_js
 node_js:
-  - '8'
-
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
-
-cache:
-  directories:
-    - ./node_modules
-
-install:
-  - npm install
-
-
+  - "8"
+dist: trusty
+sudo: required
+branches:
+  only:
+  - master
+before_script:
+  - npm install -g @angular/cli
 script:
-  - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
-
-deployment:
-  staging:
-    branch: master
-    heroku:
-      api_key:
-        secure: pBpRUGMhxuGl02M+jtLmQVaQkflBFS4BPHd5DVRKXe0jeRs3nATaZgNIoL1Cs7Oh7E1T5H8lu2wC9bTbNukTKzVg324uaf/YQoov7IVPZjDfk3bzVb3kiGJANO8SjEB40PZ9iQt9jyDnGhxPI4Usx0Zgd3Oeg21XB8MUJ9Jo3yHtZ7ANz9NWmRYYJ/Sf7SyH4zzf10i/8Gi8FUCC1lqy4ardNvIqJg8JItb3xpxthl/jegMQzgA3JP9tWvbVRiS1x55q5uLbvkozGjQFJ4wYkMWgFKPjOInQgPwEY6r868kcVvK+iKuaieQd282ACKThiRvu6bkO3nRFMQgM6yA2Nxcz9OAn1LOXFxM2ZtTDXdc1wctrdPNm2SXhHXhmlsmqwERLYd+orjGHf0AKc66zXyXYo648FcXoF78fSCb/8ZhRRoETLjtXSnOJOQ4S7MErulP1a/cjtW5D4hVK1YOQkQbvnXDAo48dv9/KhueG/kS+Tp4HYVnLrZQer6xIcBSkP3R2CjNgb1A4v5UdI7ilwLQnW9e2qdb+7ZpfxqrzvwqH5Py1yi5LC2F44XDbbdEoqHdr3/Ecs0zony1ztXmEAShXY1G/fZ1+iUIcaqXape8BMp2enFa3Oq7KrcJX17y7Q0+bAneVdswRuftUk0iS22C2uVeA4TXnM+YYQy87610=
-      appname: auto-form-ui # appname must not include upper-case characters
+- ng lint
+- ng build --prod --base-href https://auto-form-ui.herokuapp.com/
