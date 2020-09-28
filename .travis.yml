@@ -7,7 +7,7 @@ branches:
   only:
   - master
 before_script:
-  - npm install -g @angular/cli
+  - npm install -g @angular/cli@7.1.4
 script:
 - ng lint
 - ng build --prod --base-href https://github.com/tinhtinhcd/auto-form-ui
